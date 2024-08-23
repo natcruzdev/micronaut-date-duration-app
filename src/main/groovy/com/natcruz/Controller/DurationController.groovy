@@ -32,4 +32,12 @@ class DurationController {
 
         return durationService.getNumberOfWeeks(start, end) + " week(s)"
     }
+
+    @Get("/weekdays")
+    @Produces(MediaType.TEXT_PLAIN)
+    String getNumberOfWeekdays(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
+                            @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end) {
+
+        return durationService.getNumberOfWeekdays(start, end) + " week(s)"
+    }
 }
