@@ -9,7 +9,7 @@ import io.micronaut.http.annotation.Produces
 import io.micronaut.http.annotation.QueryValue
 import jakarta.inject.Inject
 
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 @Controller("/duration")
 class DurationController {
@@ -19,8 +19,8 @@ class DurationController {
 
     @Get("/days")
     @Produces(MediaType.TEXT_PLAIN)
-    String getNumberOfDays(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
-                           @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end,
+    String getNumberOfDays(@Format("dd-MM-yyyy'T'HH:mm:ssZ") @QueryValue ZonedDateTime start,
+                           @Format("dd-MM-yyyy'T'HH:mm:ssZ") @QueryValue ZonedDateTime end,
                            @QueryValue(defaultValue = "days") String convertTo) {
 
         return durationService.getNumberOfDays(start, end, convertTo.toUpperCase()) + " " +convertTo
@@ -28,8 +28,8 @@ class DurationController {
 
     @Get("/weeks")
     @Produces(MediaType.TEXT_PLAIN)
-    String getNumberOfWeeks(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
-                            @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end,
+    String getNumberOfWeeks(@Format("dd-MM-yyyy'T'HH:mm:ssZ") @QueryValue ZonedDateTime start,
+                            @Format("dd-MM-yyyy'T'HH:mm:ssZ") @QueryValue ZonedDateTime end,
                             @QueryValue(defaultValue = "weeks") String convertTo) {
 
         return durationService.getNumberOfWeeks(start, end, convertTo.toUpperCase()) + " " +convertTo
@@ -37,8 +37,8 @@ class DurationController {
 
     @Get("/weekdays")
     @Produces(MediaType.TEXT_PLAIN)
-    String getNumberOfWeekdays(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
-                               @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end,
+    String getNumberOfWeekdays(@Format("dd-MM-yyyy'T'HH:mm:ssZ") @QueryValue ZonedDateTime start,
+                               @Format("dd-MM-yyyy'T'HH:mm:ssZ") @QueryValue ZonedDateTime end,
                                @QueryValue(defaultValue = "weekdays") String convertTo) {
 
         return durationService.getNumberOfWeekdays(start, end, convertTo.toUpperCase()) + " " +convertTo

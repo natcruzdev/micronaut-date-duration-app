@@ -3,7 +3,7 @@ package com.natcruz.Service
 import jakarta.inject.Singleton
 
 import java.time.DayOfWeek
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 
 import static java.time.temporal.ChronoUnit.*
@@ -11,13 +11,13 @@ import static java.time.temporal.ChronoUnit.*
 @Singleton
 class DurationService {
 
-    long getNumberOfDays(LocalDateTime start, LocalDateTime end, String convertTo) {
+    long getNumberOfDays(ZonedDateTime start, ZonedDateTime end, String convertTo) {
 
         def numberOfDays = DAYS.between(start, end)
         return convertToUnit(numberOfDays, convertTo)
     }
 
-    long getNumberOfWeeks(LocalDateTime start, LocalDateTime end, String convertTo) {
+    long getNumberOfWeeks(ZonedDateTime start, ZonedDateTime end, String convertTo) {
         def numberOfWeeks = WEEKS.between(start, end)
         if(WEEKS == ChronoUnit.valueOf(convertTo)){
             return numberOfWeeks
@@ -32,7 +32,7 @@ class DurationService {
         return convertToUnit(numberOfWeeks * WEEKS.getDuration().toDays(), convertTo)
     }
 
-    long getNumberOfWeekdays(LocalDateTime start, LocalDateTime end, String convertTo) {
+    long getNumberOfWeekdays(ZonedDateTime start, ZonedDateTime end, String convertTo) {
         DayOfWeek startDoW = start.getDayOfWeek()
         DayOfWeek endDoW = end.getDayOfWeek()
 
@@ -49,7 +49,7 @@ class DurationService {
             else if(DayOfWeek.SUNDAY == endDoW){
                 weekdays-=1
             }
-            else if(endDoW.value< startDoW.value) {
+            else if(endDoW.value <= startDoW.value) {
                 weekdays-=2
             }
         }
