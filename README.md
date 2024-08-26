@@ -37,6 +37,7 @@ $ cd micronaut-date-duration-app
 Start the application (while using Java 17)
 ```shell
 $ sdk use java 17.0.12-amzn
+$ chmod +x gradlew
 $ ./gradlew run
 ```
 Access http://localhost:8080/hello to check if the app is running.
