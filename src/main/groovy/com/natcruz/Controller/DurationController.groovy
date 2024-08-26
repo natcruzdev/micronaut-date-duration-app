@@ -20,24 +20,27 @@ class DurationController {
     @Get("/days")
     @Produces(MediaType.TEXT_PLAIN)
     String getNumberOfDays(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
-                           @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end) {
+                           @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end,
+                           @QueryValue(defaultValue = "days") String convertTo) {
 
-        return durationService.getNumberOfDays(start, end) + " day(s)"
+        return durationService.getNumberOfDays(start, end, convertTo.toUpperCase()) + " " +convertTo
     }
 
     @Get("/weeks")
     @Produces(MediaType.TEXT_PLAIN)
     String getNumberOfWeeks(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
-                            @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end) {
+                            @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end,
+                            @QueryValue(defaultValue = "weeks") String convertTo) {
 
-        return durationService.getNumberOfWeeks(start, end) + " week(s)"
+        return durationService.getNumberOfWeeks(start, end, convertTo.toUpperCase()) + " " +convertTo
     }
 
     @Get("/weekdays")
     @Produces(MediaType.TEXT_PLAIN)
     String getNumberOfWeekdays(@Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime start,
-                            @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end) {
+                               @Format("dd-MM-yyyy'T'HH:mm:ss") @QueryValue LocalDateTime end,
+                               @QueryValue(defaultValue = "weekdays") String convertTo) {
 
-        return durationService.getNumberOfWeekdays(start, end) + " week(s)"
+        return durationService.getNumberOfWeekdays(start, end, convertTo.toUpperCase()) + " " +convertTo
     }
 }
